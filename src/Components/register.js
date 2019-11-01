@@ -1,7 +1,9 @@
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import {connect} from 'react-redux'
+import {register} from '../Redux/action'
 
-export default class Register extends React.Component{
+class Register extends React.Component{
     state={
         name:'',
         email:'',
@@ -9,21 +11,22 @@ export default class Register extends React.Component{
     }
 
     handleRegisterSubmit = () => {
-        console.log(this.state.email,this.state.password)
-        fetch('http://localhost:3000/users/',{
-            method: "POST",
-            headers:{
-                "Accepts":"application/json",
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({
-                ...this.state
-            })
-        })
-        .then(res=>res.json())
-        .then((data)=>{
-            console.log(data)
-        })
+      this.props.register(this.state)
+        // console.log(this.state.email,this.state.password)
+        // fetch('http://localhost:3000/users/',{
+        //     method: "POST",
+        //     headers:{
+        //         "Accepts":"application/json",
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body:JSON.stringify({
+        //         ...this.state
+        //     })
+        // })
+        // .then(res=>res.json())
+        // .then((data)=>{
+        //     console.log(data)
+        // })
     }
 
     handleInputChange = (e) =>{
@@ -37,6 +40,7 @@ export default class Register extends React.Component{
     }
 
     render(){
+      if (localStorage.token) this.props.history.push("/home")
         return (
             <div className="login-register-wrapper" >
                 <MDBContainer>
@@ -94,3 +98,18 @@ export default class Register extends React.Component{
     }
 };
 
+
+
+
+
+const mapStateToProps=(state)=>{
+  return {
+      user:state.user,
+  }
+}
+
+const mapDispatchToProps = {
+  register:register,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Register)

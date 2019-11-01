@@ -5,7 +5,7 @@ MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
 } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
 
-class NavbarPage extends Component {
+export default  class Navbar extends Component {
 state = {
   isOpen: false
 };
@@ -30,9 +30,7 @@ render() {
             <MDBNavItem>
               <MDBNavLink to="#!">Features</MDBNavLink>
             </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="#!">Pricing</MDBNavLink>
-            </MDBNavItem>
+          
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
@@ -55,6 +53,12 @@ render() {
                 </div>
               </MDBFormInline>
             </MDBNavItem>
+
+            <button onClick={()=>{
+              localStorage.clear()
+            
+            }}>logout</button>
+            
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
@@ -63,4 +67,3 @@ render() {
   }
 }
 
-export default NavbarPage;

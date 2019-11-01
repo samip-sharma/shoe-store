@@ -1,27 +1,16 @@
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+import {connect} from 'react-redux'
+import {login} from '../Redux/action'
 
-export default class NavBar extends React.Component {
+ class Login extends React.Component {
     state = {
         email:'',
         password:''
     }
 
     handleLoginClick = () => {
-        console.log(this.state.email,this.state.password)
-        fetch('http://localhost:3000/getToken/',{
-            method: "POST",
-            headers:{
-                "Accepts":"application/json",
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({
-                ...this.state
-            })
-        }).then(res=>res.json())
-           .then((data)=>{
-            console.log(data)
-        })
+      this.props.login(this.state)
     }
 
     handleInputChange = (e) =>{
@@ -31,6 +20,7 @@ export default class NavBar extends React.Component {
     }
 
   render(){
+    if (localStorage.token) this.props.history.push("/home")
     return (
         <div className="login-register-wrapper" >
             <MDBContainer>
@@ -76,3 +66,18 @@ export default class NavBar extends React.Component {
   }
 };
 
+
+
+
+
+const mapStateToProps=(state)=>{
+  return {
+      user:state.user,
+  }
+}
+
+const mapDispatchToProps = {
+  login:login,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
