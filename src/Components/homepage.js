@@ -10,7 +10,10 @@ class HomePage extends React.Component{
         return(
             <React.Fragment>
                 <Navbar />
-
+                <ul>
+                    <li>shoe1</li>
+                    <li>shoe 2</li>
+                </ul>
             </React.Fragment>
         )
     }
