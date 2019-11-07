@@ -1,6 +1,6 @@
 
 import {HEADERS,API} from '../Constants/constants'
-import {LOGIN, REGISTER} from './type'
+import {LOGIN, REGISTER, USER_LOGOUT} from './type'
 
 const initialState={
     user:{},
@@ -18,6 +18,10 @@ export default function  reducer(state=initialState, action){
             return{
                 ...state,
                 user:action.payload
+            }
+        case USER_LOGOUT:
+            return{
+                ...initialState
             }
         default :
         return state

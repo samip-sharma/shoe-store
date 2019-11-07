@@ -1,7 +1,9 @@
 import React from 'react'
 import Navbar from './navBar'
+import {connect} from 'react-redux'
+// import {login} from '../Redux/action'
 
-export default class HomePage extends React.Component{
+class HomePage extends React.Component{
     render(){
         if (!localStorage.token) this.props.history.push("/")
 
@@ -13,3 +15,15 @@ export default class HomePage extends React.Component{
         )
     }
 }
+
+const mapStateToProps=(state)=>{
+    return {
+        user:state.user,
+    }
+  }
+  
+  const mapDispatchToProps = {
+    // login:login,
+  }
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(HomePage)

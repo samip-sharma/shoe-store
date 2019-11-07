@@ -1,4 +1,4 @@
-import {LOGIN, REGISTER} from './type'
+import {LOGIN, REGISTER, USER_LOGOUT} from './type'
 import {API, HEADERS} from '../Constants/constants'
 
 
@@ -18,6 +18,12 @@ export const login=(login_state)=>{
             dispatch({"type":LOGIN,payload:data})
             }
             })
+    }
+}
+
+export const userLogout=()=>{
+    return function(dispatch){
+            dispatch({"type":USER_LOGOUT,payload:{}})
     }
 }
 

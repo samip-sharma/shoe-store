@@ -5,7 +5,11 @@ MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
 } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
 
-export default  class Navbar extends Component {
+
+import {connect} from 'react-redux'
+import {userLogout} from '../Redux/action'
+
+class Navbar extends Component {
 state = {
   isOpen: false
 };
@@ -56,7 +60,7 @@ render() {
 
             <button onClick={()=>{
               localStorage.clear()
-            
+            this.props.userLogout()
             }}>logout</button>
             
           </MDBNavbarNav>
@@ -67,3 +71,16 @@ render() {
   }
 }
 
+
+
+const mapStateToProps=(state)=>{
+  return {
+      // user:state.user,
+  }
+}
+
+const mapDispatchToProps = {
+  userLogout:userLogout,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Navbar)
