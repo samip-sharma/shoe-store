@@ -1,18 +1,16 @@
 import React from 'react'
 import Navbar from './navBar'
 import {connect} from 'react-redux'
-// import {login} from '../Redux/action'
+import NewShoeModal from './newShoeModale'
 
-class HomePage extends React.Component{
+class Admin extends React.Component{
     render(){
         if (!localStorage.token) this.props.history.push("/")
 
         return(
             <React.Fragment>
                 <Navbar />
-                <ul>
-
-                </ul>
+              <NewShoeModal />
             </React.Fragment>
         )
     }
@@ -25,7 +23,6 @@ const mapStateToProps=(state)=>{
   }
   
   const mapDispatchToProps = {
-    // login:login,
   }
   
-  export default connect(mapStateToProps,mapDispatchToProps)(HomePage)
+  export default connect(mapStateToProps,mapDispatchToProps)(Admin)
