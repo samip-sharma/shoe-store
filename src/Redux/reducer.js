@@ -1,10 +1,11 @@
 
 import {HEADERS,API} from '../Constants/constants'
-import {LOGIN, REGISTER, USER_LOGOUT} from './type'
+import {LOGIN, REGISTER, USER_LOGOUT, UPLOAD_SHOE} from './type'
 
 const initialState={
     user:{},
-    cart:[]
+    cart:[],
+    shoe:[]
 
 }
 
@@ -22,6 +23,11 @@ export default function  reducer(state=initialState, action){
         case USER_LOGOUT:
             return{
                 ...initialState
+            }
+        case UPLOAD_SHOE:
+            return{
+                ...state,
+                shoe : [...state.shoe, action.payload]
             }
         default :
         return state

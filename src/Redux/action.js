@@ -1,4 +1,4 @@
-import {LOGIN, REGISTER, USER_LOGOUT} from './type'
+import {LOGIN, REGISTER, USER_LOGOUT ,UPLOAD_SHOE} from './type'
 import {API, HEADERS} from '../Constants/constants'
 
 
@@ -30,7 +30,7 @@ export const userLogout=()=>{
 
 export const register=(register_state)=>{
     return function(dispatch){
-        fetch(API+"/users",{
+        fetch(API+"users",{
             method:"POST",
             headers:HEADERS,
             body:JSON.stringify(
@@ -40,6 +40,22 @@ export const register=(register_state)=>{
         .then(resp=>resp.json())
         .then(data=>{
             if(!data.error){dispatch({"type":REGISTER,payload:data})}
+            })
+    }
+}
+
+export const uploadShoe=(state)=>{
+    return function(dispatch){
+        fetch(API+"shoes",{
+            method:"POST",
+            headers:HEADERS,
+            body:JSON.stringify(
+                state
+            )
+        })
+        .then(resp=>resp.json())
+        .then(data=>{
+            if(!data.error){dispatch({"type":UPLOAD_SHOE,payload:data})}
             })
     }
 }
