@@ -5,6 +5,7 @@ import Login from './Components/login'
 import Register from './Components/register'
 import HomePage from './Components/homepage'
 import Admin from './Components/admin'
+import About from './Components/about'
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
     <Route exact path='/register' render={(routerProps)=> <Register {...routerProps} />} />
     <Route exact path='/home' render={(routerProps)=> <HomePage {...routerProps} />} />
     <Route exact path='/admin' render={(routerProps)=> <Admin {...routerProps} />} />
+    <Route exact path='/about' render={(routerProps)=> <About {...routerProps} />} />
+
 
 
   </Switch>
