@@ -1,9 +1,13 @@
 import React from 'react'
 import Navbar from './navBar'
 import {connect} from 'react-redux'
-// import {login} from '../Redux/action'
+import {getShoe} from '../Redux/action'
 
 class HomePage extends React.Component{
+    componentDidMount(){
+        this.props.getShoe()
+    }
+
     render(){
         if (!localStorage.token) this.props.history.push("/")
 
@@ -11,7 +15,14 @@ class HomePage extends React.Component{
             <React.Fragment>
                 <Navbar />
                 <ul>
-
+                    {this.props.shoes.map((shoe)=>{
+                      return  <div>
+                                <h2>{shoe.name}</h2>
+                                <p>{shoe.brand}</p>
+                                <p>${shoe.price}</p>
+                                <img src={shoe.image} alt={shoe.name}/>
+                            </div>
+                    })}
                 </ul>
             </React.Fragment>
         )
@@ -21,10 +32,12 @@ class HomePage extends React.Component{
 const mapStateToProps=(state)=>{
     return {
         user:state.user,
+        shoes:state.shoes
     }
   }
   
   const mapDispatchToProps = {
+    getShoe:getShoe
     // login:login,
   }
   

@@ -1,4 +1,4 @@
-import {LOGIN, REGISTER, USER_LOGOUT ,UPLOAD_SHOE} from './type'
+import {LOGIN, REGISTER, USER_LOGOUT ,UPLOAD_SHOE, GET_SHOES} from './type'
 import {API, HEADERS} from '../Constants/constants'
 
 
@@ -56,6 +56,16 @@ export const uploadShoe=(state)=>{
         .then(resp=>resp.json())
         .then(data=>{
             if(!data.error){dispatch({"type":UPLOAD_SHOE,payload:data})}
+            })
+    }
+}
+
+export const getShoe=(state)=>{
+    return function(dispatch){
+        fetch(API+"shoes")
+        .then(resp=>resp.json())
+        .then(data=>{
+            if(!data.error){dispatch({"type":GET_SHOES,payload:data})}
             })
     }
 }
