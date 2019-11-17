@@ -14,6 +14,12 @@ state = {
   isOpen: false
 };
 
+handleSearchChange=(e)=>{
+  this.props.shoes.map(shoe=>{
+    console.log(shoe)
+  })
+}
+
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
@@ -58,7 +64,7 @@ render() {
             <MDBNavItem>
               <MDBFormInline waves>
                 <div className="md-form my-0">
-                  <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+                  <input onChange={this.handleSearchChange} className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
                 </div>
               </MDBFormInline>
             </MDBNavItem>
@@ -81,6 +87,8 @@ render() {
 const mapStateToProps=(state)=>{
   return {
       // user:state.user,
+      shoes:state.shoes
+
   }
 }
 
