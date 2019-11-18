@@ -15,6 +15,7 @@ state = {
 };
 
 handleSearchChange=(e)=>{
+  this.props.history.push('./home')
   this.props.shoes.map(shoe=>{
     console.log(shoe)
   })
@@ -63,9 +64,9 @@ render() {
           <MDBNavbarNav right>
             <MDBNavItem>
               <MDBFormInline waves>
-                <div className="md-form my-0">
+                <form className="md-form my-0">
                   <input onChange={this.handleSearchChange} className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                </div>
+                </form>
               </MDBFormInline>
             </MDBNavItem>
 

@@ -10,7 +10,6 @@ class Admin extends React.Component{
 
         return(
             <React.Fragment>
-                <Navbar />
               <NewShoeModal  uploadShoe = { this.props.uploadShoe}/>
             </React.Fragment>
         )

@@ -11,7 +11,7 @@ class HomePage extends React.Component{
     handleImageClick=(shoe)=>{
 
         localStorage.clickedShoe=JSON.stringify(shoe) 
-        this.props.history.push("/shoeProfile")
+        
         // JSON.parse(shoe)
     }
 
@@ -20,7 +20,6 @@ class HomePage extends React.Component{
         console.log(this.props.shoes)
         return(
             <React.Fragment>
-                <Navbar />
                 <ul>
                     {this.props.shoes.map((shoe)=>{
                       return  <div>
